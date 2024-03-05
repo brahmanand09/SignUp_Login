@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "isomorphic-fetch": "^3.0.0",
+    "mongoose": "^8.2.0",
+    "nodemon": "^3.1.0"
+  },
+  "name": "reglogin",
+  "version": "1.0.0",
+  "description": "Registration and login page ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nav",
+  "license": "ISC"
+}

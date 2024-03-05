@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Login</h2>
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="username" placeholder="Enter your name" required autocomplete="off">
+            </div>
+            <div class="form-group" id="passInput">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+
+                <i class="ri-eye-line" id="show-password"></i>
+            </div>
+
+            <!-- For Captch.... -->
+            <div class="form-group">
+                <label for="captcha">Captcha:</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" readonly id="capt">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="textinput" placeholder="Enter captcha">
+                </div>
+            </div>
+            <button type="submit" onclick="validcap()" class="submit-btn">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="/signup">Signup</a></p>
+    </div>
+
+    <!-- javascript code for captcha and hide/show password -->
+    <script type="text/javascript">
+
+        // code for hide/show password...
+        const showPassword = document.querySelector("#show-password");
+        const passwordField = document.querySelector("#password");
+
+        showPassword.addEventListener("click", function () {
+            this.classList.toggle("ri-eye-off-line");
+            const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+            passwordField.setAttribute("type", type);
+        })
+
+        // Code for captcha........
+        function cap() {
+            var alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '@', '*', '#', '&'];
+
+            // For 6 latter with random..
+            var a = alpha[Math.floor(Math.random() * 66)];
+            var b = alpha[Math.floor(Math.random() * 66)];
+            var c = alpha[Math.floor(Math.random() * 66)];
+            var d = alpha[Math.floor(Math.random() * 66)];
+            var e = alpha[Math.floor(Math.random() * 66)];
+            var f = alpha[Math.floor(Math.random() * 66)];
+
+            var final = a + b + c + d + e + f;
+
+            document.getElementById("capt").value = final;
+        }
+window.onload(cap());
+
+        //  Check both captcha are same or not..
+        function validcap() {
+            var str1 = document.getElementById('capt').value;
+            var str2 = document.getElementById('textinput').value;
+            if (str1 == str2) {
+                alert("Login Successfully!");
+                return true;
+            } else {
+                alert("Please enter valid captcha code!");
+                return false;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
